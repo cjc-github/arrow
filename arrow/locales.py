@@ -2,18 +2,18 @@
 
 from math import trunc
 from typing import (
-    Any,
-    ClassVar,
-    Dict,
-    List,
-    Literal,
-    Mapping,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    Union,
-    cast,
+    Any,  # 完全不确定的类型
+    ClassVar,  # 类基本的变量
+    Dict,  # 字典类型
+    List,  # 列表类型
+    Literal,  # 具体的字面值
+    Mapping,  # map
+    Optional,  # 可选的
+    Sequence,  # 有序集合
+    Tuple,  # 固定长度、不可变的序列
+    Type,  # 类型
+    Union,  # 联合类型
+    cast,  # 类型转换函数
 )
 
 TimeFrameLiteral = Literal[
@@ -127,10 +127,10 @@ class Locale:
         self._month_name_to_ordinal = None
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int] = 0,
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int] = 0,
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within a timeframe in plain language.
 
@@ -146,9 +146,9 @@ class Locale:
         return humanized
 
     def describe_multi(
-        self,
-        timeframes: Sequence[Tuple[TimeFrameLiteral, Union[int, float]]],
-        only_distance: bool = False,
+            self,
+            timeframes: Sequence[Tuple[TimeFrameLiteral, Union[int, float]]],
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within multiple timeframes in plain language.
 
@@ -274,10 +274,10 @@ class Locale:
         return cast(str, self.timeframes[timeframe]).format(trunc(abs(delta)))
 
     def _format_relative(
-        self,
-        humanized: str,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int],
+            self,
+            humanized: str,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int],
     ) -> str:
         if timeframe == "now":
             return humanized
@@ -383,10 +383,10 @@ class EnglishLocale(Locale):
         return f"{n}th"
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[int, float] = 0,
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[int, float] = 0,
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within a timeframe in plain language.
 
@@ -1192,10 +1192,10 @@ class KoreanLocale(Locale):
         return f"{n}번째"
 
     def _format_relative(
-        self,
-        humanized: str,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int],
+            self,
+            humanized: str,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int],
     ) -> str:
         if timeframe in ("day", "days"):
             special = self.special_dayframes.get(int(delta))
@@ -1961,10 +1961,10 @@ class GermanBaseLocale(Locale):
         return f"{n}."
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[int, float] = 0,
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[int, float] = 0,
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within a timeframe in plain language.
 
@@ -3163,7 +3163,7 @@ class CzechLocale(Locale):
             if "future-singular" not in form:
                 key = "future"
             elif 2 <= abs_delta % 10 <= 4 and (
-                abs_delta % 100 < 10 or abs_delta % 100 >= 20
+                    abs_delta % 100 < 10 or abs_delta % 100 >= 20
             ):
                 key = "future-singular"
             else:
@@ -3293,7 +3293,7 @@ class SlovakLocale(Locale):
             if "future-singular" not in form:
                 key = "future"
             elif 2 <= abs_delta % 10 <= 4 and (
-                abs_delta % 100 < 10 or abs_delta % 100 >= 20
+                    abs_delta % 100 < 10 or abs_delta % 100 >= 20
             ):
                 key = "future-singular"
             else:
@@ -3456,9 +3456,9 @@ class HebrewLocale(Locale):
         return form.format(delta)
 
     def describe_multi(
-        self,
-        timeframes: Sequence[Tuple[TimeFrameLiteral, Union[int, float]]],
-        only_distance: bool = False,
+            self,
+            timeframes: Sequence[Tuple[TimeFrameLiteral, Union[int, float]]],
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within multiple timeframes in plain language.
         In Hebrew, the and word behaves a bit differently.
@@ -3916,10 +3916,10 @@ class ThaiLocale(Locale):
         return f"{year:04d}"[2:]
 
     def _format_relative(
-        self,
-        humanized: str,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int],
+            self,
+            humanized: str,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int],
     ) -> str:
         """Thai normally doesn't have any space between words"""
         if timeframe == "now":
@@ -4023,10 +4023,10 @@ class LaotianLocale(Locale):
         return f"{year:04d}"[2:]
 
     def _format_relative(
-        self,
-        humanized: str,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int],
+            self,
+            humanized: str,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int],
     ) -> str:
         """Lao normally doesn't have any space between words"""
         if timeframe == "now":
@@ -5481,10 +5481,10 @@ class LuxembourgishLocale(Locale):
         return f"{n}."
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[int, float] = 0,
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[int, float] = 0,
+            only_distance: bool = False,
     ) -> str:
         if not only_distance:
             return super().describe(timeframe, delta, only_distance)
@@ -5934,10 +5934,10 @@ class SinhalaLocale(Locale):
         return form.format(abs_delta)
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int] = 1,  # key is always future when only_distance=False
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int] = 1,  # key is always future when only_distance=False
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within a timeframe in plain language.
 
@@ -6307,10 +6307,10 @@ class AmharicLocale(Locale):
         return form.format(abs_delta)
 
     def describe(
-        self,
-        timeframe: TimeFrameLiteral,
-        delta: Union[float, int] = 1,  # key is always future when only_distance=False
-        only_distance: bool = False,
+            self,
+            timeframe: TimeFrameLiteral,
+            delta: Union[float, int] = 1,  # key is always future when only_distance=False
+            only_distance: bool = False,
     ) -> str:
         """Describes a delta within a timeframe in plain language.
 

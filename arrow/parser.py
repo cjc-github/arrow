@@ -189,7 +189,7 @@ class DateTimeParser:
     # TODO: since we support more than ISO 8601, we should rename this function
     # IDEA: break into multiple functions
     def parse_iso(
-        self, datetime_string: str, normalize_whitespace: bool = False
+            self, datetime_string: str, normalize_whitespace: bool = False
     ) -> datetime:
         if normalize_whitespace:
             datetime_string = re.sub(r"\s+", " ", datetime_string.strip())
@@ -293,10 +293,10 @@ class DateTimeParser:
         return self._parse_multiformat(datetime_string, formats)
 
     def parse(
-        self,
-        datetime_string: str,
-        fmt: Union[List[str], str],
-        normalize_whitespace: bool = False,
+            self,
+            datetime_string: str,
+            fmt: Union[List[str], str],
+            normalize_whitespace: bool = False,
     ) -> datetime:
         if normalize_whitespace:
             datetime_string = re.sub(r"\s+", " ", datetime_string)
@@ -374,9 +374,9 @@ class DateTimeParser:
             # This works because the string is scanned left-to-right and matches
             # are returned in the order found by finditer.
             fmt_pattern = (
-                fmt_pattern[: m.start() + offset]
-                + input_pattern
-                + fmt_pattern[m.end() + offset :]
+                    fmt_pattern[: m.start() + offset]
+                    + input_pattern
+                    + fmt_pattern[m.end() + offset:]
             )
             offset += len(input_pattern) - (m.end() - m.start())
 
@@ -423,73 +423,73 @@ class DateTimeParser:
 
     @overload
     def _parse_token(
-        self,
-        token: Literal[
-            "YYYY",
-            "YY",
-            "MM",
-            "M",
-            "DDDD",
-            "DDD",
-            "DD",
-            "D",
-            "Do",
-            "HH",
-            "hh",
-            "h",
-            "H",
-            "mm",
-            "m",
-            "ss",
-            "s",
-            "x",
-        ],
-        value: Union[str, bytes, SupportsInt, bytearray],
-        parts: _Parts,
+            self,
+            token: Literal[
+                "YYYY",
+                "YY",
+                "MM",
+                "M",
+                "DDDD",
+                "DDD",
+                "DD",
+                "D",
+                "Do",
+                "HH",
+                "hh",
+                "h",
+                "H",
+                "mm",
+                "m",
+                "ss",
+                "s",
+                "x",
+            ],
+            value: Union[str, bytes, SupportsInt, bytearray],
+            parts: _Parts,
     ) -> None:
         ...  # pragma: no cover
 
     @overload
     def _parse_token(
-        self,
-        token: Literal["X"],
-        value: Union[str, bytes, SupportsFloat, bytearray],
-        parts: _Parts,
+            self,
+            token: Literal["X"],
+            value: Union[str, bytes, SupportsFloat, bytearray],
+            parts: _Parts,
     ) -> None:
         ...  # pragma: no cover
 
     @overload
     def _parse_token(
-        self,
-        token: Literal["MMMM", "MMM", "dddd", "ddd", "S"],
-        value: Union[str, bytes, bytearray],
-        parts: _Parts,
+            self,
+            token: Literal["MMMM", "MMM", "dddd", "ddd", "S"],
+            value: Union[str, bytes, bytearray],
+            parts: _Parts,
     ) -> None:
         ...  # pragma: no cover
 
     @overload
     def _parse_token(
-        self,
-        token: Literal["a", "A", "ZZZ", "ZZ", "Z"],
-        value: Union[str, bytes],
-        parts: _Parts,
+            self,
+            token: Literal["a", "A", "ZZZ", "ZZ", "Z"],
+            value: Union[str, bytes],
+            parts: _Parts,
     ) -> None:
         ...  # pragma: no cover
 
     @overload
     def _parse_token(
-        self,
-        token: Literal["W"],
-        value: Tuple[_WEEKDATE_ELEMENT, _WEEKDATE_ELEMENT, Optional[_WEEKDATE_ELEMENT]],
-        parts: _Parts,
+            self,
+            token: Literal["W"],
+            value: Tuple[_WEEKDATE_ELEMENT, _WEEKDATE_ELEMENT, Optional[_WEEKDATE_ELEMENT]],
+            parts: _Parts,
     ) -> None:
         ...  # pragma: no cover
 
     def _parse_token(
-        self,
-        token: Any,
-        value: Any,
-        parts: _Parts,
+            self,
+            token: Any,
+            value: Any,
+            parts: _Parts,
     ) -> None:
         if token == "YYYY":
             parts["year"] = int(value)
@@ -689,17 +689,17 @@ class DateTimeParser:
         increment = timedelta(days=day_increment, seconds=second_increment)
 
         return (
-            datetime(
-                year=parts.get("year", 1),
-                month=parts.get("month", 1),
-                day=parts.get("day", 1),
-                hour=hour,
-                minute=parts.get("minute", 0),
-                second=parts.get("second", 0),
-                microsecond=microsecond,
-                tzinfo=parts.get("tzinfo"),
-            )
-            + increment
+                datetime(
+                    year=parts.get("year", 1),
+                    month=parts.get("month", 1),
+                    day=parts.get("day", 1),
+                    hour=hour,
+                    minute=parts.get("minute", 0),
+                    second=parts.get("second", 0),
+                    microsecond=microsecond,
+                    tzinfo=parts.get("tzinfo"),
+                )
+                + increment
         )
 
     def _parse_multiformat(self, string: str, formats: Iterable[str]) -> datetime:
@@ -723,7 +723,7 @@ class DateTimeParser:
     # generates a capture group of choices separated by an OR operator
     @staticmethod
     def _generate_choice_re(
-        choices: Iterable[str], flags: Union[int, re.RegexFlag] = 0
+            choices: Iterable[str], flags: Union[int, re.RegexFlag] = 0
     ) -> Pattern[str]:
         return re.compile(r"({})".format("|".join(choices)), flags=flags)
 

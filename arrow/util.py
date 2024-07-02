@@ -15,7 +15,7 @@ from arrow.constants import (
 
 
 def next_weekday(
-    start_date: Optional[datetime.date], weekday: int
+        start_date: Optional[datetime.date], weekday: int
 ) -> datetime.datetime:
     """Get next weekday from the specified start date.
 
