@@ -16,8 +16,9 @@ from .formatter import (
 )
 from .parser import ParserError
 
-# https://mypy.readthedocs.io/en/stable/command_line.html#cmdoption-mypy-no-implicit-reexport
-# Mypy with --strict or --no-implicit-reexport requires an explicit reexport.
+
+# 这里只是把导入的数据列出来了，上面的import的值，即可使用arrow.xxx来直接调用对应的函数
+# __all__ 模块公开接口的定义、明确定义对外公开的接口
 __all__ = [
     "__version__",
     "get",
