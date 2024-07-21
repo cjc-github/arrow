@@ -1,7 +1,7 @@
-from ._version import __version__
-from .api import get, now, utcnow
-from .arrow import Arrow
-from .factory import ArrowFactory
+from ._version import __version__  # arrow版本
+from .api import get, now, utcnow  # api中的get, now, utcnow函数
+from .arrow import Arrow  # arrow类
+from .factory import ArrowFactory  # arrow工厂类
 from .formatter import (
     FORMAT_ATOM,
     FORMAT_COOKIE,
